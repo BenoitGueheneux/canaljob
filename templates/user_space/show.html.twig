@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.firstName }} {{ user.lastName }}{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+    <p>Email :{{ user.email }}</p>
+    <p>Phone :{{ user.phone }}</p>
+    <p>Address :{{ user.address }}</p>
+    <a><a href="{{ path('user_space_edit', {id: user.id}) }}">Edit</a></a>
+    <h2>Collaborateurs</h2>
+    {% for collaborator in user.collaborators %}
+        <p>{{ collaborator.firstName }} {{ collaborator.lastName }} {{ collaborator.email }} {{ collaborator.phone }} <a href="{{ path('user_space_collaborator_remove', {id: collaborator.id}) }}">delete</a></p>
+    {% endfor %}
+    <h3>Importer Collaborateur</h3>
+    <a href="{{ path('import_csv', {id: user.id}) }}">Importer</a>
+    <h3>Exporter Collaborateur</h3>
+    <a href="{{ path('export_csv', {id: user.id}) }}">Exporter</a>
+</div>
+{% endblock %}

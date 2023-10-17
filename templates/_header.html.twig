@@ -1,0 +1,10 @@
+{% block header %}
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<a href='/user/space/show/{{ app.user.id }}'>Mon compte</a>
+		<a href='/user/space'>Liste des comptes</a>
+		<a href='{{ path('app_logout') }}'>déconnexion</a>
+	{% else %}
+		<a class="btn btn-primary" href='{{ path('app_login') }}'>Connexion</a>
+		<a class="btn btn-primary" href='{{ path('app_register') }}'>Inscription</a>
+	{% endif %}
+{% endblock %}
