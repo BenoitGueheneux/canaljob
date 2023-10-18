@@ -120,11 +120,10 @@ class UserSpaceController extends AbstractController
         if ($user === null) {
             return $this->redirectToRoute('app_user_space');
         }
-        $currentUserInterface = $security->getUser();
+        $currentUser = $security->getUser();
 
-        if ($user !== $currentUserInterface) {
-            $currentUser = $repo->findByEmail($currentUserInterface->getUserIdentifier());
-            $currentUser->addCollaborator($user);
+        if ($user !== $currentUser) {
+            $currentUser->addCollaborator($user);//fonctionne malgré l'erreur de type sur VSCode
             $entityManager->persist($currentUser);
             $entityManager->flush();
         }
