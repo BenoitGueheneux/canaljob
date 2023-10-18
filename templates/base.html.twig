@@ -19,7 +19,9 @@
 		<header>
 			{{ include('_header.html.twig') }}
 		</header>
+		<div class="container">
 		{% block body %}{% endblock %}
+		</div>
 		<footer>
 			{% block footer %}
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
